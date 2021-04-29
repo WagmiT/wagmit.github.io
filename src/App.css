@@ -1,0 +1,22 @@
+@import '~antd/dist/antd.css';
+
+* {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+.cover {
+  object-fit: cover;
+}
+.image-zoom:hover {
+  animation: zoom 1.5s infinite;
+}
+@keyframes zoom {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.02, 1.02);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
