@@ -1,10 +1,8 @@
 @import '~antd/dist/antd.css';
 
-* {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-}
 .cover {
   object-fit: cover;
+  width: 100%;
 }
 .image-zoom:hover {
   animation: zoom 1.5s infinite;

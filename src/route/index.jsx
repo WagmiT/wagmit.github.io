@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Row, Space, Typography } from "antd";
+import { grey } from '@ant-design/colors';
 
 const { Title } = Typography;
 
@@ -14,7 +15,7 @@ export const IndexPage = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img className="image-zoom" src="wagmi.png" alt="WAGMI" />
+              <img className="image-zoom cover" src="wagmi.png" alt="WAGMI" />
             </a>
           </Col>
           <Col span={12}>
@@ -23,7 +24,7 @@ export const IndexPage = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img className="image-zoom" src="ngmi.png" alt="NGMI" />
+              <img className="image-zoom cover" src="ngmi.png" alt="NGMI" />
             </a>
           </Col>
         </Row>
@@ -35,49 +36,58 @@ export const IndexPage = () => {
       </Row>
       <Row type="flex" justify="center">
         <Col>
-          <img src="chart.jpg" alt="chart" />
+          <img src="chart.jpg" alt="chart" className="cover" />
         </Col>
       </Row>
-      <Row type="flex" justify="center">
-        <Col>
-          <Space size="large">
+      <Row type="flex" justify="space-around">
+          <Col>
             <Title level={1}>
               <a
                 href="https://github.com/WagmiT"
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{color: grey.primary}}
               >
-                <i class="bi bi-github"></i>
+                <i className="bi bi-github"></i>
               </a>
             </Title>
-          </Space>
-        </Col>
-        <Col>
-          <Space size="large">
+          </Col>
+          <Col>
             <Title level={1}>
               <a
                 href="https://twitter.com/wagmit"
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{color: grey.primary}}
               >
-                <i class="bi bi-twitter"></i>
+                <i className="bi bi-twitter"></i>
               </a>
             </Title>
-          </Space>
-        </Col>
-        <Col>
-          <Space size="large">
+          </Col>
+          <Col>
             <Title level={1}>
               <a
                 href="https://t.me/wagmi_together"
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{color: grey.primary}}
               >
-                <i class="bi bi-telegram"></i>
+                <i className="bi bi-telegram"></i>
               </a>
             </Title>
-          </Space>
-        </Col>
+          </Col>
+          <Col>
+            <Title level={1}>
+              <a
+                href="https://t.me/wagmi_together"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{color: grey.primary}}
+              >
+                <i className="bi bi-telegram"></i>
+              </a>
+            </Title>
+          </Col>
       </Row>
     </div>
   );
