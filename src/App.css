@@ -1,5 +1,6 @@
 @import '~antd/dist/antd.css';
 
+/* Image Zoom */
 .cover {
   object-fit: cover;
   width: 100%;
@@ -18,3 +19,4 @@
     transform: scale(1, 1);
   }
 }
+
