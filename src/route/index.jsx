@@ -79,7 +79,7 @@ export const IndexPage = () => {
           <Col>
             <Title level={1}>
               <a
-                href="https://t.me/wagmi_together"
+                href="https://telegram.me/collablandbot?start=VFBDI1RFTCNDT01NIy0xMDAxNDM3ODA3Njgx"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{color: grey.primary}}
