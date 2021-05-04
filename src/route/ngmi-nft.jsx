@@ -16,7 +16,8 @@ export const NgmiNftPage = () => {
   const [ngmiNft, setNgmiNft] = React.useState(null);
 
   React.useEffect(() => {
-    if (!!web3 && !!account && loading) {
+    if (!!web3 && !!account) {
+      setLoading(true);
       (async () => {
         const ngmiContract = new web3.eth.Contract(
           contracts.ngmiAbiJson,

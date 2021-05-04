@@ -25,9 +25,14 @@ const web3Modal = new Web3Modal({
 });
 
 export const ConnectWalletButton = () => {
-  const { account, setAccount, setNetworkId, setWeb3 } = React.useContext(
-    Web3Context
-  );
+  const {
+    account,
+    networkId,
+    setAccount,
+    setNetworkId,
+    setWeb3,
+    setInitialized,
+  } = React.useContext(Web3Context);
 
   const connectWallet = async () => {
     const provider = await web3Modal.connect();
@@ -38,15 +43,18 @@ export const ConnectWalletButton = () => {
     setWeb3(web3);
     setAccount(address);
     setNetworkId(networkId);
+    setInitialized(true);
   };
 
-  if (account) {
+  if (networkId !== null && networkId !== 56) {
+    // Not BSC
+    return <Button danger>Wrong Network</Button>;
+  } else if (account) {
     return (
       <button className="connect-wallet ant-btn" disabled>
         <span>{account}</span>
       </button>
     );
   }
-
   return <Button onClick={connectWallet}>Connect Wallet</Button>;
 };

@@ -38,7 +38,7 @@ export const AnalyticsPage = () => {
         setLoading(false);
       })();
     }
-  }, [web3]);
+  }, []);
 
   if (!web3) {
     return <ConnectWalletInstruction />;
