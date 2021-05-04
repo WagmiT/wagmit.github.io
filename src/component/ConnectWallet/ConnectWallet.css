@@ -1,9 +1,6 @@
-.connect-wallet {
-    padding: 4px 15px;
-    border: 1px solid #f0f0f0;
-    width: 133px;
-    height: 32px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.connect-wallet > span {
+  width: 133px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

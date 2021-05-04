@@ -5,7 +5,8 @@ import { IndexPage } from "./route";
 import { Web3Store } from "./store/Web3Store";
 import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { NgmiNftPage } from "./route/ngmi-nft";
-import {AnalyticsPage} from "./route/analytics"
+import { AnalyticsPage } from "./route/analytics";
+import { WhyWAGMIPage } from "./route/why-wagmi";
 
 function App() {
   return (
@@ -17,7 +18,12 @@ function App() {
             <Route path="/ngmi-nft">
               <NgmiNftPage />
             </Route>
-            <Route path="/analytics"><AnalyticsPage /></Route>
+            <Route path="/analytics">
+              <AnalyticsPage />
+            </Route>
+            <Route path="/why-wagmi">
+              <WhyWAGMIPage />
+            </Route>
             <Route path="/">
               <IndexPage />
             </Route>

@@ -1,15 +1,15 @@
 import React from "react";
 import { Web3Context } from "../store/Web3Store";
-import { Card, Col, Row, Space, Spin, Typography } from "antd";
-import { ConnectWalletButton } from "../component/ConnectWallet/ConnectWallet";
+import { Card, Col, Row, Space, Typography } from "antd";
 import Web3 from "web3";
 import { Pie } from "react-chartjs-2";
+import { ConnectWalletInstruction } from "../component/ConnectWallet/ConnectWalletInstruction";
+import { Loading } from "../component/Loading/Loading";
+import { contracts } from "../constants";
 
 const BN = Web3.utils.BN;
 
 const { Title } = Typography;
-const WAGMI_CONTRACT_ADDRESS = "0xcddb9f34d6a48e5d051561e6d9fbfc96050cd429";
-const wagmiAbiJson = require("../abi/wagmi.json");
 
 const numberFormat = new Intl.NumberFormat("en-GB");
 
@@ -22,8 +22,8 @@ export const AnalyticsPage = () => {
     if (!!web3 && loading) {
       (async () => {
         const wagmiContract = new web3.eth.Contract(
-          wagmiAbiJson,
-          WAGMI_CONTRACT_ADDRESS
+          contracts.wagmiAbiJson,
+          contracts.WAGMI_CONTRACT_ADDRESS
         );
         const circulatingSupply = new BN(
           (await wagmiContract.methods.totalSupply().call()).toString()
@@ -41,20 +41,9 @@ export const AnalyticsPage = () => {
   }, [web3]);
 
   if (!web3) {
-    return (
-      <Row justify="center">
-        <Space size="large" direction="vertical">
-          <Title level={2}>Please connect your wallet to continue</Title>
-          <ConnectWalletButton />
-        </Space>
-      </Row>
-    );
+    return <ConnectWalletInstruction />;
   } else if (loading) {
-    return (
-      <Row justify="center">
-        <Spin size="large" />
-      </Row>
-    );
+    return <Loading />;
   }
   return (
     <>

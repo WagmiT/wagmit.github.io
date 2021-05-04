@@ -10,11 +10,11 @@ const providerOptions = {
   injected: {
     options: {
       rpc: {
-        56: 'https://bsc-dataseed.binance.org/'
+        56: "https://bsc-dataseed.binance.org/",
       },
-      network: 'binance',
+      network: "binance",
       chainId: 56,
-    }
+    },
   },
 };
 
@@ -25,7 +25,9 @@ const web3Modal = new Web3Modal({
 });
 
 export const ConnectWalletButton = () => {
-  const { account, setAccount, setNetworkId, setWeb3} = React.useContext(Web3Context);
+  const { account, setAccount, setNetworkId, setWeb3 } = React.useContext(
+    Web3Context
+  );
 
   const connectWallet = async () => {
     const provider = await web3Modal.connect();
@@ -38,8 +40,12 @@ export const ConnectWalletButton = () => {
     setNetworkId(networkId);
   };
 
-  if(account) {
-    return <div className="connect-wallet" disabled>{account}</div>
+  if (account) {
+    return (
+      <button className="connect-wallet ant-btn" disabled>
+        <span>{account}</span>
+      </button>
+    );
   }
 
   return <Button onClick={connectWallet}>Connect Wallet</Button>;
