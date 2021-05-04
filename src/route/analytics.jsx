@@ -25,20 +25,28 @@ export const AnalyticsPage = () => {
           contracts.wagmiAbiJson,
           contracts.WAGMI_CONTRACT_ADDRESS
         );
+        const divisor = new BN(10).pow(new BN(18));
         const circulatingSupply = new BN(
           (await wagmiContract.methods.totalSupply().call()).toString()
-        ).div(new BN(10).pow(new BN(18)));
+        ).div(divisor);
         const maxSupply = new BN(10 ** 9);
-        const totalBurnt = maxSupply.sub(circulatingSupply);
+        const whyWagmiBurnt = new BN(
+          await wagmiContract.methods
+            .balanceOf("0x0000000000000000000000000000000000000001")
+            .call()
+        ).div(divisor);
+        console.log(whyWagmiBurnt.toString());
+        const totalBurnt = maxSupply.sub(circulatingSupply).sub(whyWagmiBurnt);
         setAnalytics({
           circulatingSupply: circulatingSupply.toNumber(),
           totalBurnt: totalBurnt.toNumber(),
           maxSupply: maxSupply.toNumber(),
+          whyWagmiBurnt: whyWagmiBurnt.toNumber(),
         });
         setLoading(false);
       })();
     }
-  }, []);
+  }, [web3]);
 
   if (!web3) {
     return <ConnectWalletInstruction />;
@@ -55,19 +63,29 @@ export const AnalyticsPage = () => {
           <Col>
             <Pie
               data={{
-                labels: ["Circulating Supply", "Burnt $WAGMI"],
+                labels: [
+                  "Circulating Supply",
+                  "Burnt $WAGMI",
+                  "Why $WAGMI burnt",
+                ],
                 datasets: [
                   {
                     label: "WAGMI",
                     backgroundColor: [
                       "rgba(54, 162, 235, 0.2)",
                       "rgba(255, 99, 132, 0.2)",
+                      "rgba(255, 99, 132, 0.2)",
                     ],
                     borderColor: [
                       "rgba(54, 162, 235, 1)",
                       "rgba(255, 99, 132, 1)",
+                      "rgba(255, 99, 132, 1)",
                     ],
-                    data: [analytics.circulatingSupply, analytics.totalBurnt],
+                    data: [
+                      analytics.circulatingSupply,
+                      analytics.totalBurnt,
+                      analytics.whyWagmiBurnt,
+                    ],
                   },
                 ],
               }}
@@ -83,6 +101,9 @@ export const AnalyticsPage = () => {
           </Card>
           <Card title="Total Burnt">
             {numberFormat.format(analytics.totalBurnt)} $WAGMI
+          </Card>
+          <Card title="Total Why $WAGMI Burnt">
+            {numberFormat.format(analytics.whyWagmiBurnt)} $WAGMI
           </Card>
         </Row>
       </Space>
