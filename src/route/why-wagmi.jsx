@@ -90,7 +90,7 @@ export const WhyWAGMIPage = () => {
       contracts.wagmiAbiJson,
       contracts.WAGMI_CONTRACT_ADDRESS
     );
-    const fee = await whyWAGMIContract.methods.feeCost().call();
+    const fee = (await whyWAGMIContract.methods.feeCost().call()) * 10;
     const approvalLimit = await WAGMIContract.methods
       .allowance(account, contracts.WHY_WAGMI_CONTRACT_ADDRESS)
       .call();
@@ -125,7 +125,7 @@ export const WhyWAGMIPage = () => {
           </Col>
         </Row>
         <Row>
-          <Text>1000 $WAGMI is needed for sending a message</Text>
+          <Text>{whyWagmiData.fee} $WAGMI is needed for sending a message</Text>
         </Row>
         <Row justify="center">
           {whyWagmiData.hasApproved ? (
